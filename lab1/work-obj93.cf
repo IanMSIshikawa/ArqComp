@@ -1,0 +1,7 @@
+v 4
+file . "lab1VHDL_tb.vhd" "5edaa075671da1f9c7510a3b8420cce910d51d20" "20240405183654.156":
+  entity lab1vhdl_tb at 1( 0) + 0 on 13;
+  architecture lab1vhdl_tb_architecture of lab1vhdl_tb at 9( 123) + 0 on 14;
+file . "lab1VHDL.vhd" "dc088267acd3b0ca3699bd354ca06b694e5744a2" "20240405181858.851":
+  entity lab1vhdl at 1( 0) + 0 on 11;
+  architecture lab1vhdl_architecture of lab1vhdl at 14( 237) + 0 on 12;

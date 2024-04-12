@@ -1,0 +1,28 @@
+1.Converta o número 1001.1001 para decimal
+
+8.5625
+
+2.Converta o número 9.80665 para binário
+
+0101.1100
+
+3.Considerando o formato IEEE 754  half precision, qual é o valor decimal do  float representado pelos bits 1001010101001100? Não use excesso (i.e., use bias = 0) para ficar mais fácil
+
+1 00101 0101001100
+-1.01010011*2^(5) -> -101010.011 -> decimal =  -42.375
+
+4.No mesmo formato sem excesso, represente 6.62607015
+
+110.101 -> 1.10101*2^2 -> 0 00010 1010100000 ->  0000101010100000
+
+5. Determine o erro aproximado da representação de 1/7, ainda neste formato
+
+0 0000 0010010010 -> 0,142578125
+1/7 = 0,142857143
+erro: 0,000279018
+
+7. Qual o maior valor representável neste formato?
+Para um float de 32 bits, temos que o valor maximo é (2^24-1)(2^8-1), pois temos 8 bits para o expoente, 1 para o sinal e os demais, 23, para a mantissa.
+
+	
+
