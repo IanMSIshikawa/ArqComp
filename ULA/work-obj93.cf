@@ -1,7 +1,7 @@
 v 4
-file . "sum2x16.vhd" "6b196aab86aed799bd3daa8d2f341574e6c3adf9" "20240414134616.013":
-  entity sum2x16 at 1( 0) + 0 on 51;
-  architecture a_sum2x16 of sum2x16 at 13( 248) + 0 on 52;
-file . "sum2x16_tb.vhd" "a7cdb68e0954f9f383dba54d750b74224ce91a87" "20240414134633.348":
-  entity sum2x16_tb at 1( 0) + 0 on 53;
-  architecture a_sum2x16_tb of sum2x16_tb at 8( 97) + 0 on 54;
+file . "ULA.vhd" "ec57fe69cc483e3d5174c02a3dbafab75742123b" "20240415001603.176":
+  entity ula at 1( 0) + 0 on 21;
+  architecture arch_ula of ula at 16( 376) + 0 on 22;
+file . "ULA_tb.vhd" "de375809af2cb70ca3c5b4691d06a90eac0accaf" "20240415001603.174":
+  entity ula_tb at 1( 0) + 0 on 19;
+  architecture arch_ula_tb of ula_tb at 10( 118) + 0 on 20;
