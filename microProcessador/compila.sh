@@ -1,5 +1,36 @@
+ghdl -a stateMachine.vhd
+ghdl -e stateMachine
+ghdl -a stateMachine_tb.vhd
+ghdl -e stateMachine_tb
 ghdl -a rom128x12.vhd 
 ghdl -e rom128x12
 ghdl -a rom128x12_tb.vhd
 ghdl -e rom128x12_tb
-ghdl -r rom128x12_tb --wave=rom128x12_tb.ghw
+ghdl -a sum2x16.vhd
+ghdl -e sum2x16
+ghdl -a sum2x16_tb.vhd
+ghdl -e sum2x16_tb
+ghdl -a reg16bits.vhd
+ghdl -e reg16bits       
+ghdl -a reg16bits_tb.vhd
+ghdl -e reg16bits_tb      
+ghdl -a bankReg.vhd
+ghdl -e bankReg                         
+ghdl -a bankReg_tb.vhd
+ghdl -e bankReg_tb
+ghdl -a mux3x16bits.vhd
+ghdl -e mux3x16bits     
+ghdl -a ULA.vhd
+ghdl -e ULA
+ghdl -a ULA_tb.vhd
+ghdl -e ULA_tb    
+ghdl -a microProcessor.vhd
+ghdl -e microProcessor  
+ghdl -a microProcessor_tb.vhd
+ghdl -e microProcessor_tb  
+ghdl -a PC.vhd
+ghdl -e PC
+ghdl -a PC_tb.vhd
+ghdl -e PC_tb
+ghdl -r PC_tb --wave=PC_tb.ghw
+gtkwave PC_tb.ghw
