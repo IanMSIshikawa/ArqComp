@@ -17,6 +17,7 @@ architecture a_stateMachine of stateMachine is
     
 signal state_s : std_logic := '0';
 
+
 begin
 
     process (clk, reset)

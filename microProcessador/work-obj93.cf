@@ -1,58 +1,67 @@
 v 4
-file . "romAndPC_tb.vhd" "4429af543740a0a4e96e1dcad72ac1d0a332a2ec" "20240506000209.373":
-  entity romandpc_tb at 1( 0) + 0 on 413;
-  architecture a_romandpc_tb of romandpc_tb at 10( 142) + 0 on 414;
-file . "PC.vhd" "7b09de7bc24538d5f8dce2702aba552177568c91" "20240506000209.233":
-  entity pc at 1( 0) + 0 on 407;
-  architecture a_pc of pc at 16( 328) + 0 on 408;
-file . "stateMachine.vhd" "59c0955b54e6ed3ce9e4a83f40cea85ef941d9b4" "20240506000208.533":
-  entity statemachine at 1( 0) + 0 on 377;
-  architecture a_statemachine of statemachine at 16( 261) + 0 on 378;
-file . "microProcessor_tb.vhd" "f061bffd768be2259203edbd421dfa04493574b1" "20240506000209.173":
-  entity microprocessor_tb at 1( 0) + 0 on 405;
-  architecture a_microprocessor_tb of microprocessor_tb at 16( 224) + 0 on 406;
-file . "microProcessor.vhd" "4fbe2e0d96fe5078e003331d74f001977afa2565" "20240506000209.115":
-  entity microprocessor at 1( 0) + 0 on 403;
-  architecture a_microprocessor of microprocessor at 20( 549) + 0 on 404;
-file . "bankReg.vhd" "19b5181506b088ac2035744abf069f92416173b7" "20240506000208.882":
-  entity bankreg at 1( 0) + 0 on 393;
-  architecture a_bankreg of bankreg at 17( 418) + 0 on 394;
-file . "ULA_tb.vhd" "2fee169d5c6322faadca4e82759fe8c67dab9dae" "20240506000209.067":
-  entity ula_tb at 1( 0) + 0 on 401;
-  architecture arch_ula_tb of ula_tb at 10( 118) + 0 on 402;
-file . "rom128x12.vhd" "25c9dc626d5e41a923cf5aa0f5e0d135d569090f" "20240506000208.630":
-  entity rom128x12 at 1( 0) + 0 on 381;
-  architecture a_rom128x12 of rom128x12 at 10( 233) + 0 on 382;
-file . "ULA.vhd" "57832fb1ca7dddd34f2f0e9672386b6d44df3e88" "20240506000209.021":
-  entity ula at 1( 0) + 0 on 399;
-  architecture arch_ula of ula at 16( 352) + 0 on 400;
-file . "sum2x16.vhd" "6b196aab86aed799bd3daa8d2f341574e6c3adf9" "20240506000208.714":
-  entity sum2x16 at 1( 0) + 0 on 385;
-  architecture a_sum2x16 of sum2x16 at 13( 248) + 0 on 386;
-file . "mux3x16bits.vhd" "9c713f041408b87f6e38035f83a0f259eb83eb7d" "20240506000208.978":
-  entity mux3x16bits at 1( 0) + 0 on 397;
-  architecture a_mux3x16bits of mux3x16bits at 17( 363) + 0 on 398;
-file . "reg16bits.vhd" "54ce10bd48cdc64cdf27541f3a03687110528767" "20240506000208.795":
-  entity reg16bits at 1( 0) + 0 on 389;
-  architecture a_reg16bits of reg16bits at 15( 334) + 1 on 390;
-file . "sum2x16_tb.vhd" "a7cdb68e0954f9f383dba54d750b74224ce91a87" "20240506000208.753":
-  entity sum2x16_tb at 1( 0) + 0 on 387;
-  architecture a_sum2x16_tb of sum2x16_tb at 8( 97) + 0 on 388;
-file . "reg16bits_tb.vhd" "8192230dde4c020b772a9772b460d0b8c978022b" "20240506000208.837":
-  entity reg16bits_tb at 1( 0) + 0 on 391;
-  architecture a_reg16bits_tb of reg16bits_tb at 10( 124) + 0 on 392;
-file . "rom128x12_tb.vhd" "31c7cf601c724e42133e2f09573ba6df93848743" "20240506000208.671":
-  entity rom128x12_tb at 1( 0) + 0 on 383;
-  architecture a_rom128x12_tb of rom128x12_tb at 10( 131) + 0 on 384;
-file . "bankReg_tb.vhd" "f32733122173e8cbf125b8252440adec40125370" "20240506000208.929":
-  entity bankreg_tb at 1( 0) + 0 on 395;
-  architecture a_bankreg_tb of bankreg_tb at 10( 122) + 0 on 396;
-file . "stateMachine_tb.vhd" "b905b25e1c2fe93e0150aaa9c930168e65060030" "20240506000208.588":
-  entity statemachine_tb at 1( 0) + 0 on 379;
-  architecture a_statemachine_tb of statemachine_tb at 10( 153) + 0 on 380;
-file . "PC_tb.vhd" "ac066dd4e46012a4d2d69aa12dc50e74c0c99c03" "20240506000209.278":
-  entity pc_tb at 1( 0) + 0 on 409;
-  architecture a_pc_tb of pc_tb at 10( 134) + 0 on 410;
-file . "romAndPC.vhd" "60704e3edb9170b7fd42fd8e2eb8a5fa74fa707e" "20240506000209.326":
-  entity romandpc at 1( 0) + 0 on 411;
-  architecture a_romandpc of romandpc at 13( 231) + 0 on 412;
+file . "topLevel_tb.vhd" "b455773e1c45ec92ecdf05af7e0545f0fbdb9209" "20240506211425.180":
+  entity toplevel_tb at 1( 0) + 0 on 457;
+  architecture rtl of toplevel_tb at 10( 150) + 0 on 458;
+file . "controlUnit.vhd" "67d1fa9d8e4a99bbacb39a56042ae48dc5042bf6" "20240506211425.088":
+  entity controlunit at 1( 0) + 0 on 453;
+  architecture a_controlunit of controlunit at 16( 292) + 0 on 454;
+file . "romAndPC_tb.vhd" "4429af543740a0a4e96e1dcad72ac1d0a332a2ec" "20240506211425.040":
+  entity romandpc_tb at 1( 0) + 0 on 451;
+  architecture a_romandpc_tb of romandpc_tb at 10( 142) + 0 on 452;
+file . "PC.vhd" "7b09de7bc24538d5f8dce2702aba552177568c91" "20240506211424.905":
+  entity pc at 1( 0) + 0 on 445;
+  architecture a_pc of pc at 16( 328) + 0 on 446;
+file . "stateMachine.vhd" "0aacf7a3fea73a3ecadce76dc3e0acd07282ee89" "20240506211424.201":
+  entity statemachine at 1( 0) + 0 on 415;
+  architecture a_statemachine of statemachine at 16( 261) + 0 on 416;
+file . "microProcessor_tb.vhd" "f061bffd768be2259203edbd421dfa04493574b1" "20240506211424.847":
+  entity microprocessor_tb at 1( 0) + 0 on 443;
+  architecture a_microprocessor_tb of microprocessor_tb at 16( 224) + 0 on 444;
+file . "microProcessor.vhd" "4fbe2e0d96fe5078e003331d74f001977afa2565" "20240506211424.792":
+  entity microprocessor at 1( 0) + 0 on 441;
+  architecture a_microprocessor of microprocessor at 20( 549) + 0 on 442;
+file . "bankReg.vhd" "19b5181506b088ac2035744abf069f92416173b7" "20240506211424.557":
+  entity bankreg at 1( 0) + 0 on 431;
+  architecture a_bankreg of bankreg at 17( 418) + 0 on 432;
+file . "ULA_tb.vhd" "2fee169d5c6322faadca4e82759fe8c67dab9dae" "20240506211424.743":
+  entity ula_tb at 1( 0) + 0 on 439;
+  architecture arch_ula_tb of ula_tb at 10( 118) + 0 on 440;
+file . "rom128x12.vhd" "25c9dc626d5e41a923cf5aa0f5e0d135d569090f" "20240506211424.301":
+  entity rom128x12 at 1( 0) + 0 on 419;
+  architecture a_rom128x12 of rom128x12 at 10( 233) + 0 on 420;
+file . "ULA.vhd" "57832fb1ca7dddd34f2f0e9672386b6d44df3e88" "20240506211424.698":
+  entity ula at 1( 0) + 0 on 437;
+  architecture arch_ula of ula at 16( 352) + 0 on 438;
+file . "sum2x16.vhd" "6b196aab86aed799bd3daa8d2f341574e6c3adf9" "20240506211424.386":
+  entity sum2x16 at 1( 0) + 0 on 423;
+  architecture a_sum2x16 of sum2x16 at 13( 248) + 0 on 424;
+file . "mux3x16bits.vhd" "9c713f041408b87f6e38035f83a0f259eb83eb7d" "20240506211424.654":
+  entity mux3x16bits at 1( 0) + 0 on 435;
+  architecture a_mux3x16bits of mux3x16bits at 17( 363) + 0 on 436;
+file . "reg16bits.vhd" "54ce10bd48cdc64cdf27541f3a03687110528767" "20240506211424.470":
+  entity reg16bits at 1( 0) + 0 on 427;
+  architecture a_reg16bits of reg16bits at 15( 334) + 1 on 428;
+file . "sum2x16_tb.vhd" "a7cdb68e0954f9f383dba54d750b74224ce91a87" "20240506211424.426":
+  entity sum2x16_tb at 1( 0) + 0 on 425;
+  architecture a_sum2x16_tb of sum2x16_tb at 8( 97) + 0 on 426;
+file . "reg16bits_tb.vhd" "8192230dde4c020b772a9772b460d0b8c978022b" "20240506211424.512":
+  entity reg16bits_tb at 1( 0) + 0 on 429;
+  architecture a_reg16bits_tb of reg16bits_tb at 10( 124) + 0 on 430;
+file . "rom128x12_tb.vhd" "31c7cf601c724e42133e2f09573ba6df93848743" "20240506211424.342":
+  entity rom128x12_tb at 1( 0) + 0 on 421;
+  architecture a_rom128x12_tb of rom128x12_tb at 10( 131) + 0 on 422;
+file . "bankReg_tb.vhd" "f32733122173e8cbf125b8252440adec40125370" "20240506211424.604":
+  entity bankreg_tb at 1( 0) + 0 on 433;
+  architecture a_bankreg_tb of bankreg_tb at 10( 122) + 0 on 434;
+file . "stateMachine_tb.vhd" "b905b25e1c2fe93e0150aaa9c930168e65060030" "20240506211424.258":
+  entity statemachine_tb at 1( 0) + 0 on 417;
+  architecture a_statemachine_tb of statemachine_tb at 10( 153) + 0 on 418;
+file . "PC_tb.vhd" "ac066dd4e46012a4d2d69aa12dc50e74c0c99c03" "20240506211424.949":
+  entity pc_tb at 1( 0) + 0 on 447;
+  architecture a_pc_tb of pc_tb at 10( 134) + 0 on 448;
+file . "romAndPC.vhd" "60704e3edb9170b7fd42fd8e2eb8a5fa74fa707e" "20240506211424.994":
+  entity romandpc at 1( 0) + 0 on 449;
+  architecture a_romandpc of romandpc at 13( 231) + 0 on 450;
+file . "topLevel.vhd" "8caf6399e709da3b4ea9351bc10c4bccc9a417f4" "20240506211425.131":
+  entity toplevel at 1( 0) + 0 on 455;
+  architecture a_toplevel of toplevel at 15( 266) + 0 on 456;

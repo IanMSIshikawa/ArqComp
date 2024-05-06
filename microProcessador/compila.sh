@@ -46,5 +46,13 @@ ghdl -e romAndPC
 ghdl -a romAndPC_tb.vhd
 ghdl -e romAndPC_tb
 
-ghdl -r romAndPC_tb --wave=romAndPC_tb.ghw
-gtkwave romAndPC_tb.ghw
+ghdl -a controlUnit.vhd
+ghdl -e controlUnit
+
+ghdl -a topLevel.vhd
+ghdl -e topLevel
+ghdl -a topLevel_tb.vhd
+ghdl -e topLevel_tb
+
+ghdl -r topLevel_tb --wave=topLevel_tb.ghw
+gtkwave topLevel_tb.ghw
