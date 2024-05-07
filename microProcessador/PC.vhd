@@ -31,12 +31,14 @@ architecture a_PC of PC is
 
 begin
 
-    data_in_s <= data_out_s + 1;
+    
+    data_in_s <=    data_in when writeEnable = '1' else 
+                    data_out_s + 1;
 
     reg: reg16bits port map (
         clk => clk,
         rst => reset,
-        wr_en => writeEnable,
+        wr_en => '1',
         data_in => data_in_s,
         data_out => data_out_s
     );

@@ -14,12 +14,13 @@ architecture rtl of topLevel_tb is
             clk   : in std_logic;
             reset : in std_logic;
             dataOut: out unsigned (11 downto 0)
+            -- instruction: in unsigned (11 downto 0)
                 
         );
     end component;
 
     signal clk_tb, reset_tb : std_logic := '0';
-    signal dataOut_tb : unsigned (11 downto 0) := "000000000000";
+    signal dataOut_tb: unsigned (11 downto 0) := "000000000000";
     signal period_time : time := 100 ns;
     signal finished : std_logic := '0';
     
@@ -46,6 +47,7 @@ begin
         finished <= '1';
         wait;
     end process sim_time_proc;
+
     clk_proc: process
     begin                       
         while finished /= '1' loop
@@ -56,6 +58,8 @@ begin
         end loop;
         wait;
     end process clk_proc;
+
+
 
     
 

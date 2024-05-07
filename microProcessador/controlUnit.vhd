@@ -7,8 +7,11 @@ entity controlUnit is
     port (
         clk   : in std_logic;
         reset : in std_logic;
+        instruction: in unsigned (11 downto 0);
         rom_clk : out std_logic;
-        pc_clk : out std_logic
+        pc_clk : out std_logic;
+        jump_en : out std_logic;
+        jump_adress : out unsigned (7 downto 0)
         
     );
 end entity controlUnit;
@@ -24,8 +27,16 @@ architecture a_controlUnit of controlUnit is
     end component;
 
     signal state_s : std_logic := '0';
+    signal opcode : unsigned (3 downto 0) := "0000";
     
 begin
+
+    opcode <= instruction (11 downto 8);
+
+    jump_en <=  '1' when opcode = "1111" else 
+                '0';
+    jump_adress <= instruction(7 downto 0);
+
 
     sm: stateMachine port map (
         clk => clk,

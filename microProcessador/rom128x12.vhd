@@ -11,9 +11,9 @@ architecture a_rom128x12 of rom128x12 is
    type mem is array (0 to 127) of unsigned(11 downto 0);
    constant conteudo_rom : mem := (
       -- caso endereco => conteudo
-      0  => "000000000010",
+      0  => "111100000010",
       1  => "100000000000",
-      2  => "000000000000",
+      2  => "111100000110",
       3  => "000000000000",
       4  => "100000000000",
       5  => "000000000010",

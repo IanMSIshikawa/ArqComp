@@ -8,6 +8,7 @@ entity topLevel is
         clk   : in std_logic;
         reset : in std_logic;
         dataOut: out unsigned (11 downto 0)
+        -- instruction: in unsigned (11 downto 0)
         
     );
 end entity topLevel;
@@ -18,8 +19,11 @@ architecture a_topLevel of topLevel is
         port (
             clk   : in std_logic;
             reset : in std_logic;
+            instruction: in unsigned (11 downto 0);
             rom_clk : out std_logic;
-            pc_clk : out std_logic
+            pc_clk : out std_logic;
+            jump_en : out std_logic;
+            jump_adress : out unsigned (7 downto 0)
             
         );
     end component;
@@ -46,7 +50,11 @@ architecture a_topLevel of topLevel is
     end component;
 
     signal rom_clk_s, pc_clk_s: std_logic := '0';
-    signal pc_out : unsigned (15 downto 0) := "0000000000000000";
+    signal pc_out, jump_adress_final : unsigned (15 downto 0) := "0000000000000000";
+    signal jump_en_s : std_logic := '0';
+    signal jump_adress_s: unsigned (7 downto 0) := "00000000";
+    signal rom_out : unsigned (11 downto 0) := "000000000000";
+    
     
     
 
@@ -56,15 +64,20 @@ begin
         clk => clk,
         reset => reset,
         rom_clk => rom_clk_s,
-        pc_clk => pc_clk_s
+        pc_clk => pc_clk_s,
+        jump_en => jump_en_s,
+        jump_adress => jump_adress_s,
+        instruction => rom_out
 
     );
+
+    jump_adress_final <= "00000000" & jump_adress_s;
 
     programCounter: PC port map (
         clk => pc_clk_s,
         reset => reset,
-        writeEnable => '1',
-        data_in => "0000000000000000",
+        writeEnable => jump_en_s,
+        data_in => jump_adress_final,
         data_out => pc_out
 
     );
@@ -72,7 +85,7 @@ begin
     rom: rom128x12 port map (
         clk => rom_clk_s,
         endereco => pc_out (6 downto 0),
-        dado => dataOut
+        dado => rom_out
     );
     
 
