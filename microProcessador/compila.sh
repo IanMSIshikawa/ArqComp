@@ -54,5 +54,5 @@ ghdl -e topLevel
 ghdl -a topLevel_tb.vhd
 ghdl -e topLevel_tb
 
-ghdl -r topLevel_tb --wave=topLevel_tb.ghw
-gtkwave topLevel_tb.ghw
+ghdl -r microProcessor_tb --wave=microProcessor_tb.ghw
+gtkwave microProcessor_tb.ghw

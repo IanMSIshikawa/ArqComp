@@ -7,7 +7,7 @@ entity topLevel is
     port (
         clk   : in std_logic;
         reset : in std_logic;
-        dataOut: out unsigned (11 downto 0)
+        dataOut: out unsigned (15 downto 0)
         -- instruction: in unsigned (11 downto 0)
         
     );
@@ -19,11 +19,11 @@ architecture a_topLevel of topLevel is
         port (
             clk   : in std_logic;
             reset : in std_logic;
-            instruction: in unsigned (11 downto 0);
+            instruction: in unsigned (15 downto 0);
             rom_clk : out std_logic;
             pc_clk : out std_logic;
             jump_en : out std_logic;
-            jump_adress : out unsigned (7 downto 0)
+            jump_adress : out unsigned (11 downto 0)
             
         );
     end component;
@@ -43,8 +43,8 @@ architecture a_topLevel of topLevel is
     component rom128x12 is
         port (
             clk      : in std_logic;
-            endereco : in unsigned(6 downto 0);
-            dado     : out unsigned(11 downto 0) 
+            endereco : in unsigned(11 downto 0);
+            dado     : out unsigned(15 downto 0) 
             
         );
     end component;
@@ -52,8 +52,8 @@ architecture a_topLevel of topLevel is
     signal rom_clk_s, pc_clk_s: std_logic := '0';
     signal pc_out, jump_adress_final : unsigned (15 downto 0) := "0000000000000000";
     signal jump_en_s : std_logic := '0';
-    signal jump_adress_s: unsigned (7 downto 0) := "00000000";
-    signal rom_out : unsigned (11 downto 0) := "000000000000";
+    signal jump_adress_s: unsigned (11 downto 0) := "000000000000";
+    signal rom_out : unsigned (15 downto 0) := "0000000000000000";
     
     
     
@@ -71,7 +71,7 @@ begin
 
     );
 
-    jump_adress_final <= "00000000" & jump_adress_s;
+    jump_adress_final <= "0000" & jump_adress_s;
 
     programCounter: PC port map (
         clk => pc_clk_s,
@@ -84,7 +84,7 @@ begin
 
     rom: rom128x12 port map (
         clk => rom_clk_s,
-        endereco => pc_out (6 downto 0),
+        endereco => pc_out (11 downto 0),
         dado => rom_out
     );
     

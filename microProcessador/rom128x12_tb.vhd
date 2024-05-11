@@ -12,14 +12,14 @@ architecture a_rom128x12_tb of rom128x12_tb is
 component rom128x12 is
     port (
         clk      : in std_logic;
-        endereco : in unsigned(6 downto 0);
-        dado     : out unsigned(11 downto 0)         
+        endereco : in unsigned(11 downto 0);
+        dado     : out unsigned(15 downto 0)         
     );
 end component;
 
 signal clk_tb : std_logic := '1';
-signal endereco_tb : unsigned (6 downto 0);
-signal dado_tb : unsigned (11 downto 0);
+signal endereco_tb : unsigned (11 downto 0);
+signal dado_tb : unsigned (15 downto 0);
 signal period_time : time := 100 ns;
 signal finished : std_logic := '0';
 
@@ -51,11 +51,11 @@ begin
    process                      
    begin
         wait for 200 ns;
-            endereco_tb <= "0000001";        
+            endereco_tb <= "000000000001";        
         wait for 100 ns;
-            endereco_tb <= "0000010";
+            endereco_tb <= "000000000010";
         wait for 100 ns;
-            endereco_tb <= "0000011";
+            endereco_tb <= "000000000011";
         wait;
    end process;
 

@@ -86,13 +86,14 @@ begin
    begin
         wait for 200 ns;
         ULASrc1_tb <= "01";
-        ULASrc2_tb <= "01";
+        ULASrc2_tb <= "10";
         memToReg_tb <= "00";
         ULAControl_tb <= "00";
         writeEnable_tb <= '1';
         writeReg_tb <= "001";
         readReg1_tb <= "001";
         readReg2_tb <= "010";
+        imm_tb <= "0000000000000100";
         --soma registrador 1 (valor 0) com 4 e armazena no registrador 1
         
         wait for 100 ns;
@@ -112,10 +113,10 @@ begin
         memToReg_tb <= "00";
         ULAControl_tb <= "00";
         writeEnable_tb <= '1';
-        writeReg_tb <= "011";
         readReg1_tb <= "001";
+        writeReg_tb <= "011";
         readReg2_tb <= "010";
-
+        
         --soma reg 1 e reg 2 e armazena no reg 3
 
         wait for 100 ns;
@@ -124,7 +125,7 @@ begin
         memToReg_tb <= "00";
         ULAControl_tb <= "00";
         writeEnable_tb <= '0';
-        writeReg_tb <= "011";
+        writeReg_tb <= "001";
         readReg1_tb <= "001";
         readReg2_tb <= "000";
 

@@ -7,11 +7,11 @@ entity controlUnit is
     port (
         clk   : in std_logic;
         reset : in std_logic;
-        instruction: in unsigned (11 downto 0);
+        instruction: in unsigned (15 downto 0);
         rom_clk : out std_logic;
         pc_clk : out std_logic;
         jump_en : out std_logic;
-        jump_adress : out unsigned (7 downto 0)
+        jump_adress : out unsigned (11 downto 0)
         
     );
 end entity controlUnit;
@@ -31,11 +31,11 @@ architecture a_controlUnit of controlUnit is
     
 begin
 
-    opcode <= instruction (11 downto 8);
+    opcode <= instruction (15 downto 12);
 
     jump_en <=  '1' when opcode = "1111" else 
                 '0';
-    jump_adress <= instruction(7 downto 0);
+    jump_adress <= instruction(11 downto 0);
 
 
     sm: stateMachine port map (

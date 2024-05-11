@@ -53,8 +53,18 @@ architecture a_microProcessor of microProcessor is
             
             );
         end component;
+    
+    component reg16bits is
+        port (
+            clk      : in std_logic;
+            rst      : in std_logic;
+            wr_en    : in std_logic;
+            data_in  : in unsigned(15 downto 0);
+            data_out : out unsigned(15 downto 0)
+        );
+    end component;
 
-    signal writeDataFinal, ULAout, ULAinput1, ULAinput2 : unsigned (15 downto 0) := "0000000000000000";
+    signal writeDataFinal, ULAout, ULAinput1, ULAinput2, acumuladorFinal : unsigned (15 downto 0) := "0000000000000000";
     signal muxSrc1op1 : unsigned (15 downto 0) := "0000000000000000";
     signal muxSrc2op0 : unsigned (15 downto 0) := "0000000000000000";
 
@@ -73,6 +83,14 @@ architecture a_microProcessor of microProcessor is
             writeData => writeDataFinal,
             dataReg1 => muxSrc1op1,
             dataReg2 => muxSrc2op0  
+    );
+
+    acumulador: reg16bits port map (
+        clk => clk,
+        rst => reset,
+        wr_en => '1',
+        data_in => ULAout,
+        data_out => acumuladorFinal
     );
 
     muxMemToReg: mux3x16bits port map (
@@ -94,7 +112,7 @@ architecture a_microProcessor of microProcessor is
     muxSrc2: mux3x16bits port map (
         selector => ULASrc2,
         op0 => muxSrc2op0,
-        op1 => "0000000000000100",
+        op1 => acumuladorFinal,
         op2 => imm,
         result => ULAinput2
     );
