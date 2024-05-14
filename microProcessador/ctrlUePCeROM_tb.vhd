@@ -3,13 +3,13 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.math_real.all;
 
-entity topLevel_tb is
+entity ctrlUePCeROM_tb is
         
-end entity topLevel_tb;
+end entity ctrlUePCeROM_tb;
 
-architecture rtl of topLevel_tb is
+architecture rtl of ctrlUePCeROM_tb is
 
-    component topLevel is
+    component ctrlUePCeROM is
         port (
             clk   : in std_logic;
             reset : in std_logic;
@@ -27,7 +27,7 @@ architecture rtl of topLevel_tb is
 
 begin
 
-    tb: topLevel port map (
+    tb: ctrlUePCeROM port map (
         clk => clk_tb,
         reset => reset_tb,
         dataOut => dataOut_tb

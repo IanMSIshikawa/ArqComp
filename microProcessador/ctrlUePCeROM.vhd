@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.math_real.all;
 
-entity topLevel is
+entity ctrlUePCeROM is
     port (
         clk   : in std_logic;
         reset : in std_logic;
@@ -11,9 +11,9 @@ entity topLevel is
         -- instruction: in unsigned (11 downto 0)
         
     );
-end entity topLevel;
+end entity ctrlUePCeROM;
 
-architecture a_topLevel of topLevel is
+architecture a_ctrlUePCeROM of ctrlUePCeROM is
 
     component controlUnit is
         port (
