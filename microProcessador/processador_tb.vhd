@@ -9,11 +9,11 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.math_real.all;
 
-entity microProcessor_tb is
+entity processador_tb is
 
 end;
 
-architecture a_microProcessor_tb of microProcessor_tb is
+architecture a_processador_tb of processador_tb is
 
     component microProcessor is
     port (
