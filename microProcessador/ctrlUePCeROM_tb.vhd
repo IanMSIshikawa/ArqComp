@@ -13,14 +13,19 @@ architecture rtl of ctrlUePCeROM_tb is
         port (
             clk   : in std_logic;
             reset : in std_logic;
-            dataOut: out unsigned (15 downto 0)
-            -- instruction: in unsigned (11 downto 0)
-                
+            exe_clk : out std_logic;
+            ulaOP : out unsigned(1 downto 0);
+            imm_enable : out std_logic;
+            writeEnable :  out std_logic;     
+            reg_src : out unsigned (2 downto 0);
+            reg_dst1 : out unsigned (2 downto 0);
+            reg_dst2 : out unsigned (2 downto 0);
+            imm: out unsigned (5 downto 0)
+                    
         );
     end component;
 
     signal clk_tb, reset_tb : std_logic := '0';
-    signal dataOut_tb: unsigned (15 downto 0) := "0000000000000000";
     signal period_time : time := 100 ns;
     signal finished : std_logic := '0';
     
@@ -29,8 +34,7 @@ begin
 
     tb: ctrlUePCeROM port map (
         clk => clk_tb,
-        reset => reset_tb,
-        dataOut => dataOut_tb
+        reset => reset_tb
     );
 
     reset_global: process

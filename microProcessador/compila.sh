@@ -1,5 +1,5 @@
 ghdl -a *.vhd
-ghdl -e ctrlUePCeROM
-ghdl -e ctrlUePCeROM_tb
-ghdl -r ctrlUePCeROM_tb --wave=ctrlUePCeROM_tb.ghw
-gtkwave ctrlUePCeROM_tb.ghw
+ghdl -e microProcessor
+ghdl -e microProcessor_tb
+ghdl -r microProcessor_tb --wave=microProcessor_tb.ghw
+gtkwave microProcessor.gtkw

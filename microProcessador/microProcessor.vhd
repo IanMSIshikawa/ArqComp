@@ -7,10 +7,8 @@ entity microProcessor is
     port (
         clk   : in std_logic;
         reset : in std_logic;
-        writeEnable: in std_logic;
-        memToReg, ULASrc1, ULASrc2, ULAControl: in unsigned (1 downto 0);
-        memoryData, PC, imm: in unsigned (15 downto 0);
-        readReg1, readReg2, writeReg: in unsigned (2 downto 0);
+        memToReg, ULASrc1: in unsigned (1 downto 0);
+        memoryData, PC: in unsigned (15 downto 0);
         carry, overflow: out std_logic;
         ULAFinal: out unsigned (15 downto 0) 
         
@@ -18,6 +16,21 @@ entity microProcessor is
 end entity microProcessor;
 
 architecture a_microProcessor of microProcessor is
+
+    component ctrlUePCeROM is
+        port (
+            clk   : in std_logic;
+            reset : in std_logic;
+            exe_clk : out std_logic;
+            ulaOP : out unsigned(1 downto 0);
+            imm_enable : out std_logic;
+            writeEnable :  out std_logic;     
+            reg_src : out unsigned (2 downto 0);
+            reg_dst1 : out unsigned (2 downto 0);
+            reg_dst2 : out unsigned (2 downto 0);
+            imm: out unsigned (5 downto 0)     
+            );     
+    end component;
 
     
     component bankReg is
@@ -67,31 +80,54 @@ architecture a_microProcessor of microProcessor is
     signal writeDataFinal, ULAout, ULAinput1, ULAinput2, acumuladorFinal : unsigned (15 downto 0) := "0000000000000000";
     signal muxSrc1op1 : unsigned (15 downto 0) := "0000000000000000";
     signal muxSrc2op0 : unsigned (15 downto 0) := "0000000000000000";
-
+    signal instructionOut_s, imm_m : unsigned (15 downto 0) := "0000000000000000";
+    signal exe_clk_s, writeEnable_s, imm_enable_s : std_logic := '0';
+    signal opcode : unsigned(3 downto 0 ) := "0000";
+    signal reg_dst1_s, reg_dst2_s, reg_src_s : unsigned (2 downto 0) := "000";
+    signal ulaOP_s, selector_s : unsigned (1 downto 0) := "00";
+    signal imm_s : unsigned (5 downto 0) := "000000";
+    
     
     
     
     begin
 
+    ctrluPcRom: ctrlUePCeROM port map (
+        clk => clk,
+        reset => reset,
+        exe_clk => exe_clk_s,
+        ulaOP => ulaOP_s,
+        imm_enable => imm_enable_s,
+        writeEnable => writeEnable_s,
+        reg_src => reg_src_s,
+        reg_dst1 => reg_dst1_s,
+        reg_dst2 => reg_dst2_s,
+        imm => imm_s
+    );
+    --OK
+
+                
     br: bankReg port map (
-            clk   => clk,
+            clk   => exe_clk_s,
             reset => reset,
-            writeEnable => writeEnable, 
-            readReg1 => readReg1,
-            readReg2 => readReg2,
-            writeReg => writeReg,
+            writeEnable => writeEnable_s, 
+            readReg1 => reg_dst1_s,
+            readReg2 => reg_dst2_s,
+            writeReg => reg_src_s,
             writeData => writeDataFinal,
             dataReg1 => muxSrc1op1,
             dataReg2 => muxSrc2op0  
     );
+    --OK
 
     acumulador: reg16bits port map (
-        clk => clk,
+        clk => exe_clk_s,
         rst => reset,
         wr_en => '1',
         data_in => ULAout,
         data_out => acumuladorFinal
     );
+    --OK
 
     muxMemToReg: mux3x16bits port map (
         selector => memToReg,
@@ -100,6 +136,7 @@ architecture a_microProcessor of microProcessor is
         op2 => "0000000000000000",
         result => writeDataFinal
     );
+    --OK
 
     muxSrc1: mux3x16bits port map (
         selector => ULASrc1,
@@ -108,23 +145,33 @@ architecture a_microProcessor of microProcessor is
         op2 => "0000000000000000",
         result => ULAinput1
     );
+    --OK
+
+    --alterar depois para usar acumulador 
+    selector_s <=   "10" when imm_enable_s = '1' else 
+                    "00";
+    
+    imm_m <= "0000000000" & imm_s;
 
     muxSrc2: mux3x16bits port map (
-        selector => ULASrc2,
+        selector => selector_s,
         op0 => muxSrc2op0,
         op1 => acumuladorFinal,
-        op2 => imm,
+        op2 => imm_m,
         result => ULAinput2
     );
+    
+
 
     alu: ULA port map (
-        selector => ULAControl,
+        selector => ulaOP_s,
         inputA => ULAinput1,
         inputB => ULAinput2,
         result => ULAout, 
         carry => carry,
         overflow => overflow
     );
+    --OK
     ULAFinal <= ULAout;
     
     

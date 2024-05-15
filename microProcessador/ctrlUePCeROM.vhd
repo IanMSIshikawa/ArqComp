@@ -7,9 +7,14 @@ entity ctrlUePCeROM is
     port (
         clk   : in std_logic;
         reset : in std_logic;
-        dataOut: out unsigned (15 downto 0)
-        -- instruction: in unsigned (11 downto 0)
-        
+        exe_clk : out std_logic;
+        ulaOP : out unsigned(1 downto 0);
+        imm_enable : out std_logic;
+        writeEnable :  out std_logic;     
+        reg_src : out unsigned (2 downto 0);
+        reg_dst1 : out unsigned (2 downto 0);
+        reg_dst2 : out unsigned (2 downto 0);
+        imm: out unsigned (5 downto 0)
     );
 end entity ctrlUePCeROM;
 
@@ -22,8 +27,16 @@ architecture a_ctrlUePCeROM of ctrlUePCeROM is
             instruction: in unsigned (15 downto 0);
             rom_clk : out std_logic;
             pc_clk : out std_logic;
+            exe_clk : out std_logic;
             jump_en : out std_logic;
-            jump_adress : out unsigned (11 downto 0)
+            imm_enable : out std_logic;
+            writeEnable :  out std_logic;
+            jump_adress : out unsigned (11 downto 0);
+            reg_src : out unsigned (2 downto 0);
+            reg_dst1 : out unsigned (2 downto 0);
+            reg_dst2 : out unsigned (2 downto 0);
+            ulaOP: out unsigned (1 downto 0);
+            imm: out unsigned (5 downto 0)
             
         );
     end component;
@@ -57,20 +70,29 @@ architecture a_ctrlUePCeROM of ctrlUePCeROM is
     
     
     
+    
 
 begin
 
     ctrlUnit: controlUnit port map (
         clk => clk,
         reset => reset,
+        instruction => rom_out,
         rom_clk => rom_clk_s,
         pc_clk => pc_clk_s,
+        exe_clk => exe_clk,
         jump_en => jump_en_s,
+        imm_enable => imm_enable,
+        writeEnable => writeEnable,
         jump_adress => jump_adress_s,
-        instruction => rom_out
+        reg_src => reg_src,
+        reg_dst1 => reg_dst1,
+        reg_dst2 => reg_dst2,
+        ulaOP => ulaOP,
+        imm => imm
 
     );
-
+    
     jump_adress_final <= "0000" & jump_adress_s;
 
     programCounter: PC port map (
@@ -87,6 +109,7 @@ begin
         endereco => pc_out (11 downto 0),
         dado => rom_out
     );
+
     
 
 end architecture;
