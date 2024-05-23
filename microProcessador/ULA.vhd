@@ -49,12 +49,12 @@ begin
     -- 00 -> sum
     -- 01 -> sub
     -- 10 -> and
-    -- 11 -> or
+    -- 11 -> nothing
 
     result <=   inputA+inputB when selector = "00" else
-                inputA-inputB when selector = "01" else
+                inputB-inputA when selector = "01" else
                 inputA and inputB when selector = "10" else
-                inputA or inputB when selector = "11" else
+                inputA when selector = "11" else
                 "0000000000000000";
     
 

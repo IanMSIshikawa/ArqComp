@@ -22,13 +22,18 @@ architecture a_microProcessor of microProcessor is
             clk   : in std_logic;
             reset : in std_logic;
             exe_clk : out std_logic;
+            pc_clk :out std_logic;
             ulaOP : out unsigned(1 downto 0);
             imm_enable : out std_logic;
-            writeEnable :  out std_logic;     
+            writeEnable :  out std_logic;   
+            acc_write_en : out std_logic;
+            selectorWriteData : out std_logic;  
             reg_src : out unsigned (2 downto 0);
             reg_dst1 : out unsigned (2 downto 0);
             reg_dst2 : out unsigned (2 downto 0);
-            imm: out unsigned (5 downto 0)     
+            imm: out unsigned (5 downto 0);
+            selectorAcc : out std_logic;
+            selectorInputA : out std_logic
             );     
     end component;
 
@@ -45,15 +50,15 @@ architecture a_microProcessor of microProcessor is
             );
         end component;
         
-        component ULA is
-            port (
-                selector: in unsigned (1 downto 0);
-                inputA: in unsigned (15 downto 0);
-                inputB: in unsigned (15 downto 0);
-                result: out unsigned (15 downto 0);
-                carry, overflow: out std_logic
-            
-        );
+    component ULA is
+        port (
+            selector: in unsigned (1 downto 0);
+            inputA: in unsigned (15 downto 0);
+            inputB: in unsigned (15 downto 0);
+            result: out unsigned (15 downto 0);
+            carry, overflow: out std_logic
+        
+    );
     end component;
     
     component mux3x16bits is
@@ -77,14 +82,14 @@ architecture a_microProcessor of microProcessor is
         );
     end component;
 
-    signal writeDataFinal, ULAout, ULAinput1, ULAinput2, acumuladorFinal : unsigned (15 downto 0) := "0000000000000000";
-    signal muxSrc1op1 : unsigned (15 downto 0) := "0000000000000000";
+    signal writeDataFinal, ULAout, ULAinput1, ULAinput2, acumuladorFinal, ULAinput1_final, acc_in : unsigned (15 downto 0) := "0000000000000000";
+    signal ULAinput1_s : unsigned (15 downto 0) := "0000000000000000";
     signal muxSrc2op0 : unsigned (15 downto 0) := "0000000000000000";
-    signal instructionOut_s, imm_m : unsigned (15 downto 0) := "0000000000000000";
-    signal exe_clk_s, writeEnable_s, imm_enable_s : std_logic := '0';
+    signal instructionOut_s, imm_m, imm_final : unsigned (15 downto 0) := "0000000000000000";
+    signal exe_clk_s, writeEnable_s, imm_enable_s, pc_clk_s, rom_clk_s, selectorWriteData_s, selectorAcc_s, acc_reset, acc_write_en_s, selectorInputA_s : std_logic := '0';
     signal opcode : unsigned(3 downto 0 ) := "0000";
     signal reg_dst1_s, reg_dst2_s, reg_src_s : unsigned (2 downto 0) := "000";
-    signal ulaOP_s, selector_s : unsigned (1 downto 0) := "00";
+    signal ulaOP_s, selector_s, selectorWriteData_final : unsigned (1 downto 0) := "00";
     signal imm_s : unsigned (5 downto 0) := "000000";
     
     
@@ -96,14 +101,20 @@ architecture a_microProcessor of microProcessor is
         clk => clk,
         reset => reset,
         exe_clk => exe_clk_s,
+        pc_clk => pc_clk_s,
         ulaOP => ulaOP_s,
         imm_enable => imm_enable_s,
         writeEnable => writeEnable_s,
+        acc_write_en => acc_write_en_s,
+        selectorWriteData => selectorWriteData_s, 
         reg_src => reg_src_s,
         reg_dst1 => reg_dst1_s,
         reg_dst2 => reg_dst2_s,
-        imm => imm_s
+        imm => imm_s,
+        selectorAcc => selectorAcc_s,
+        selectorInputA => selectorInputA_s
     );
+    
     --OK
 
                 
@@ -115,58 +126,51 @@ architecture a_microProcessor of microProcessor is
             readReg2 => reg_dst2_s,
             writeReg => reg_src_s,
             writeData => writeDataFinal,
-            dataReg1 => muxSrc1op1,
+            dataReg1 => ULAinput1_s,
             dataReg2 => muxSrc2op0  
     );
-    --OK
+    
+
+    
 
     acumulador: reg16bits port map (
-        clk => exe_clk_s,
+        clk => pc_clk_s,
         rst => reset,
-        wr_en => '1',
-        data_in => ULAout,
+        wr_en => acc_write_en_s,
+        data_in => acc_in,
         data_out => acumuladorFinal
     );
     --OK
 
+    acc_in <=   ULAout when selectorAcc_s = '0' else 
+                imm_final;
+
+    ULAinput1_final <= ULAinput1_s when selectorInputA_s = '0' else 
+                    imm_final;
+
+    selectorWriteData_final <= '0' & selectorWriteData_s;
+    imm_final <= "0000000000" & imm_s;
+
     muxMemToReg: mux3x16bits port map (
-        selector => memToReg,
-        op0 => ULAout,
-        op1 => memoryData,
-        op2 => "0000000000000000",
+        selector => selectorWriteData_final,
+        op0 => acumuladorFinal,
+        op1 => imm_final,
+        op2 => memoryData,
         result => writeDataFinal
     );
     --OK
 
-    muxSrc1: mux3x16bits port map (
-        selector => ULASrc1,
-        op0 => PC,
-        op1 => muxSrc1op1,
-        op2 => "0000000000000000",
-        result => ULAinput1
-    );
+  
     --OK
-
-    --alterar depois para usar acumulador 
-    selector_s <=   "10" when imm_enable_s = '1' else 
-                    "00";
     
     imm_m <= "0000000000" & imm_s;
 
-    muxSrc2: mux3x16bits port map (
-        selector => selector_s,
-        op0 => muxSrc2op0,
-        op1 => acumuladorFinal,
-        op2 => imm_m,
-        result => ULAinput2
-    );
     
-
-
+    
     alu: ULA port map (
         selector => ulaOP_s,
-        inputA => ULAinput1,
-        inputB => ULAinput2,
+        inputA => ULAinput1_final,
+        inputB => acumuladorFinal,
         result => ULAout, 
         carry => carry,
         overflow => overflow
