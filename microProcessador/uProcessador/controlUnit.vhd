@@ -88,10 +88,6 @@ begin
     reg_write <= instruction(11 downto 9);
     reg_read <= instruction(8 downto 6);
 
-    reg_write <= reg_write_s;
-
-    reg_read <= reg_read_s; 
-
 
     imm <=  instruction(5 downto 0);
 

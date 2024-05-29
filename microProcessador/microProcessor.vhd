@@ -56,7 +56,7 @@ architecture a_microProcessor of microProcessor is
             inputA: in unsigned (15 downto 0);
             inputB: in unsigned (15 downto 0);
             result: out unsigned (15 downto 0);
-            carry, overflow: out std_logic
+            carry, overflow, zero: out std_logic
         
     );
     end component;
@@ -86,7 +86,8 @@ architecture a_microProcessor of microProcessor is
     signal ULAinput1_s : unsigned (15 downto 0) := "0000000000000000";
     signal muxSrc2op0 : unsigned (15 downto 0) := "0000000000000000";
     signal instructionOut_s, imm_m, imm_final : unsigned (15 downto 0) := "0000000000000000";
-    signal exe_clk_s, writeEnable_s, imm_enable_s, pc_clk_s, rom_clk_s, selectorWriteData_s, selectorAcc_s, acc_reset, acc_write_en_s, selectorInputA_s : std_logic := '0';
+    signal exe_clk_s, writeEnable_s, imm_enable_s, pc_clk_s, rom_clk_s, selectorWriteData_s,
+           selectorAcc_s, acc_reset, acc_write_en_s, selectorInputA_s, zero_s : std_logic := '0';
     signal opcode : unsigned(3 downto 0 ) := "0000";
     signal reg_dst1_s, reg_dst2_s, reg_src_s : unsigned (2 downto 0) := "000";
     signal ulaOP_s, selector_s, selectorWriteData_final : unsigned (1 downto 0) := "00";
@@ -173,7 +174,8 @@ architecture a_microProcessor of microProcessor is
         inputB => acumuladorFinal,
         result => ULAout, 
         carry => carry,
-        overflow => overflow
+        overflow => overflow,
+        zero => zero_s
     );
     --OK
     ULAFinal <= ULAout;

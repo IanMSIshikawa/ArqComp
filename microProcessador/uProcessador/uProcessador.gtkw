@@ -1,0 +1,40 @@
+[*]
+[*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
+[*] Wed May 29 01:10:44 2024
+[*]
+[dumpfile] "/home/ian/Faculdade/5semestre/ArqComp/VHDL/microProcessador/uProcessador/uProcessador_tb.ghw"
+[dumpfile_mtime] "Wed May 29 01:09:27 2024"
+[dumpfile_size] 8538
+[savefile] "/home/ian/Faculdade/5semestre/ArqComp/VHDL/microProcessador/uProcessador/uProcessador.gtkw"
+[timestart] 0
+[size] 1366 704
+[pos] -1 -1
+*-29.000000 171000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.uprocessador_tb.
+[treeopen] top.uprocessador_tb.tb.
+[treeopen] top.uprocessador_tb.tb.programcounter.reg.
+[sst_width] 233
+[signals_width] 246
+[sst_expanded] 1
+[sst_vpaned_height] 334
+@28
+top.uprocessador_tb.clk_tb
+top.uprocessador_tb.tb.clk1_s
+top.uprocessador_tb.tb.clk2_s
+top.uprocessador_tb.tb.clk3_s
+@22
+#{top.uprocessador_tb.tb.pc_out[15:0]} top.uprocessador_tb.tb.pc_out[15] top.uprocessador_tb.tb.pc_out[14] top.uprocessador_tb.tb.pc_out[13] top.uprocessador_tb.tb.pc_out[12] top.uprocessador_tb.tb.pc_out[11] top.uprocessador_tb.tb.pc_out[10] top.uprocessador_tb.tb.pc_out[9] top.uprocessador_tb.tb.pc_out[8] top.uprocessador_tb.tb.pc_out[7] top.uprocessador_tb.tb.pc_out[6] top.uprocessador_tb.tb.pc_out[5] top.uprocessador_tb.tb.pc_out[4] top.uprocessador_tb.tb.pc_out[3] top.uprocessador_tb.tb.pc_out[2] top.uprocessador_tb.tb.pc_out[1] top.uprocessador_tb.tb.pc_out[0]
+#{top.uprocessador_tb.tb.acumuladorfinal[15:0]} top.uprocessador_tb.tb.acumuladorfinal[15] top.uprocessador_tb.tb.acumuladorfinal[14] top.uprocessador_tb.tb.acumuladorfinal[13] top.uprocessador_tb.tb.acumuladorfinal[12] top.uprocessador_tb.tb.acumuladorfinal[11] top.uprocessador_tb.tb.acumuladorfinal[10] top.uprocessador_tb.tb.acumuladorfinal[9] top.uprocessador_tb.tb.acumuladorfinal[8] top.uprocessador_tb.tb.acumuladorfinal[7] top.uprocessador_tb.tb.acumuladorfinal[6] top.uprocessador_tb.tb.acumuladorfinal[5] top.uprocessador_tb.tb.acumuladorfinal[4] top.uprocessador_tb.tb.acumuladorfinal[3] top.uprocessador_tb.tb.acumuladorfinal[2] top.uprocessador_tb.tb.acumuladorfinal[1] top.uprocessador_tb.tb.acumuladorfinal[0]
+#{top.uprocessador_tb.tb.br.outreg0[15:0]} top.uprocessador_tb.tb.br.outreg0[15] top.uprocessador_tb.tb.br.outreg0[14] top.uprocessador_tb.tb.br.outreg0[13] top.uprocessador_tb.tb.br.outreg0[12] top.uprocessador_tb.tb.br.outreg0[11] top.uprocessador_tb.tb.br.outreg0[10] top.uprocessador_tb.tb.br.outreg0[9] top.uprocessador_tb.tb.br.outreg0[8] top.uprocessador_tb.tb.br.outreg0[7] top.uprocessador_tb.tb.br.outreg0[6] top.uprocessador_tb.tb.br.outreg0[5] top.uprocessador_tb.tb.br.outreg0[4] top.uprocessador_tb.tb.br.outreg0[3] top.uprocessador_tb.tb.br.outreg0[2] top.uprocessador_tb.tb.br.outreg0[1] top.uprocessador_tb.tb.br.outreg0[0]
+#{top.uprocessador_tb.tb.br.outreg1[15:0]} top.uprocessador_tb.tb.br.outreg1[15] top.uprocessador_tb.tb.br.outreg1[14] top.uprocessador_tb.tb.br.outreg1[13] top.uprocessador_tb.tb.br.outreg1[12] top.uprocessador_tb.tb.br.outreg1[11] top.uprocessador_tb.tb.br.outreg1[10] top.uprocessador_tb.tb.br.outreg1[9] top.uprocessador_tb.tb.br.outreg1[8] top.uprocessador_tb.tb.br.outreg1[7] top.uprocessador_tb.tb.br.outreg1[6] top.uprocessador_tb.tb.br.outreg1[5] top.uprocessador_tb.tb.br.outreg1[4] top.uprocessador_tb.tb.br.outreg1[3] top.uprocessador_tb.tb.br.outreg1[2] top.uprocessador_tb.tb.br.outreg1[1] top.uprocessador_tb.tb.br.outreg1[0]
+#{top.uprocessador_tb.tb.br.outreg2[15:0]} top.uprocessador_tb.tb.br.outreg2[15] top.uprocessador_tb.tb.br.outreg2[14] top.uprocessador_tb.tb.br.outreg2[13] top.uprocessador_tb.tb.br.outreg2[12] top.uprocessador_tb.tb.br.outreg2[11] top.uprocessador_tb.tb.br.outreg2[10] top.uprocessador_tb.tb.br.outreg2[9] top.uprocessador_tb.tb.br.outreg2[8] top.uprocessador_tb.tb.br.outreg2[7] top.uprocessador_tb.tb.br.outreg2[6] top.uprocessador_tb.tb.br.outreg2[5] top.uprocessador_tb.tb.br.outreg2[4] top.uprocessador_tb.tb.br.outreg2[3] top.uprocessador_tb.tb.br.outreg2[2] top.uprocessador_tb.tb.br.outreg2[1] top.uprocessador_tb.tb.br.outreg2[0]
+#{top.uprocessador_tb.tb.br.outreg3[15:0]} top.uprocessador_tb.tb.br.outreg3[15] top.uprocessador_tb.tb.br.outreg3[14] top.uprocessador_tb.tb.br.outreg3[13] top.uprocessador_tb.tb.br.outreg3[12] top.uprocessador_tb.tb.br.outreg3[11] top.uprocessador_tb.tb.br.outreg3[10] top.uprocessador_tb.tb.br.outreg3[9] top.uprocessador_tb.tb.br.outreg3[8] top.uprocessador_tb.tb.br.outreg3[7] top.uprocessador_tb.tb.br.outreg3[6] top.uprocessador_tb.tb.br.outreg3[5] top.uprocessador_tb.tb.br.outreg3[4] top.uprocessador_tb.tb.br.outreg3[3] top.uprocessador_tb.tb.br.outreg3[2] top.uprocessador_tb.tb.br.outreg3[1] top.uprocessador_tb.tb.br.outreg3[0]
+#{top.uprocessador_tb.tb.br.outreg4[15:0]} top.uprocessador_tb.tb.br.outreg4[15] top.uprocessador_tb.tb.br.outreg4[14] top.uprocessador_tb.tb.br.outreg4[13] top.uprocessador_tb.tb.br.outreg4[12] top.uprocessador_tb.tb.br.outreg4[11] top.uprocessador_tb.tb.br.outreg4[10] top.uprocessador_tb.tb.br.outreg4[9] top.uprocessador_tb.tb.br.outreg4[8] top.uprocessador_tb.tb.br.outreg4[7] top.uprocessador_tb.tb.br.outreg4[6] top.uprocessador_tb.tb.br.outreg4[5] top.uprocessador_tb.tb.br.outreg4[4] top.uprocessador_tb.tb.br.outreg4[3] top.uprocessador_tb.tb.br.outreg4[2] top.uprocessador_tb.tb.br.outreg4[1] top.uprocessador_tb.tb.br.outreg4[0]
+#{top.uprocessador_tb.tb.br.outreg5[15:0]} top.uprocessador_tb.tb.br.outreg5[15] top.uprocessador_tb.tb.br.outreg5[14] top.uprocessador_tb.tb.br.outreg5[13] top.uprocessador_tb.tb.br.outreg5[12] top.uprocessador_tb.tb.br.outreg5[11] top.uprocessador_tb.tb.br.outreg5[10] top.uprocessador_tb.tb.br.outreg5[9] top.uprocessador_tb.tb.br.outreg5[8] top.uprocessador_tb.tb.br.outreg5[7] top.uprocessador_tb.tb.br.outreg5[6] top.uprocessador_tb.tb.br.outreg5[5] top.uprocessador_tb.tb.br.outreg5[4] top.uprocessador_tb.tb.br.outreg5[3] top.uprocessador_tb.tb.br.outreg5[2] top.uprocessador_tb.tb.br.outreg5[1] top.uprocessador_tb.tb.br.outreg5[0]
+#{top.uprocessador_tb.tb.br.outreg6[15:0]} top.uprocessador_tb.tb.br.outreg6[15] top.uprocessador_tb.tb.br.outreg6[14] top.uprocessador_tb.tb.br.outreg6[13] top.uprocessador_tb.tb.br.outreg6[12] top.uprocessador_tb.tb.br.outreg6[11] top.uprocessador_tb.tb.br.outreg6[10] top.uprocessador_tb.tb.br.outreg6[9] top.uprocessador_tb.tb.br.outreg6[8] top.uprocessador_tb.tb.br.outreg6[7] top.uprocessador_tb.tb.br.outreg6[6] top.uprocessador_tb.tb.br.outreg6[5] top.uprocessador_tb.tb.br.outreg6[4] top.uprocessador_tb.tb.br.outreg6[3] top.uprocessador_tb.tb.br.outreg6[2] top.uprocessador_tb.tb.br.outreg6[1] top.uprocessador_tb.tb.br.outreg6[0]
+#{top.uprocessador_tb.tb.br.outreg7[15:0]} top.uprocessador_tb.tb.br.outreg7[15] top.uprocessador_tb.tb.br.outreg7[14] top.uprocessador_tb.tb.br.outreg7[13] top.uprocessador_tb.tb.br.outreg7[12] top.uprocessador_tb.tb.br.outreg7[11] top.uprocessador_tb.tb.br.outreg7[10] top.uprocessador_tb.tb.br.outreg7[9] top.uprocessador_tb.tb.br.outreg7[8] top.uprocessador_tb.tb.br.outreg7[7] top.uprocessador_tb.tb.br.outreg7[6] top.uprocessador_tb.tb.br.outreg7[5] top.uprocessador_tb.tb.br.outreg7[4] top.uprocessador_tb.tb.br.outreg7[3] top.uprocessador_tb.tb.br.outreg7[2] top.uprocessador_tb.tb.br.outreg7[1] top.uprocessador_tb.tb.br.outreg7[0]
+@28
+top.uprocessador_tb.reset_tb
+[pattern_trace] 1
+[pattern_trace] 0

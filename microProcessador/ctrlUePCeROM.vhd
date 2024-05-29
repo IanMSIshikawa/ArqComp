@@ -71,7 +71,7 @@ architecture a_ctrlUePCeROM of ctrlUePCeROM is
         );
     end component;
 
-    signal rom_clk_s, pc_clk_s: std_logic := '0';
+    signal rom_clk_s, pc_clk_s, exe_clk_s: std_logic := '0';
     signal pc_out, jump_adress_final : unsigned (15 downto 0) := "0000000000000000";
     signal jump_en_s : std_logic := '0';
     signal jump_adress_s: unsigned (11 downto 0) := "000000000000";
@@ -89,7 +89,7 @@ begin
         instruction => rom_out,
         rom_clk => rom_clk_s,
         pc_clk => pc_clk_s,
-        exe_clk => exe_clk,
+        exe_clk => exe_clk_s,
         jump_en => jump_en_s,
         imm_enable => imm_enable,
         writeEnable => writeEnable,
@@ -109,10 +109,12 @@ begin
     );
 
     pc_clk <= pc_clk_s;
+    exe_clk <= exe_clk_s;
+
     jump_adress_final <= "0000" & jump_adress_s;
 
     programCounter: PC port map (
-        clk => pc_clk_s,
+        clk => exe_clk_s,
         reset => reset,
         writeEnable => jump_en_s,
         data_in => jump_adress_final,
