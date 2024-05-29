@@ -7,6 +7,8 @@ J    : 0110 ccccccccccc
 MOVA : 0111 ddd xxx xxxxxx --move acumulador para um registrador 
 MOVR : 1000 xxx sss xxxxxx --move registrador para o acumulador
 CMP  : 1001 xxx sss xxxxxx
+JZ   : 1010 xxx sss xxxxxx
+JC   : 1011 xxx sss xxxxxx
 
 onde: 
         d  -> registrador de destino 

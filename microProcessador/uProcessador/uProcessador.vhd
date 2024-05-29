@@ -17,9 +17,13 @@ architecture a_uProcessador of uProcessador is
             clk   : in std_logic;
             reset : in std_logic;
             instruction: in unsigned (15 downto 0);
+            PC: in unsigned (15 downto 0);
+            flagCarry: in std_logic;
+            flagZero: in std_logic;
             clk1 : out std_logic;
             clk2 : out std_logic;
             clk3 : out std_logic;
+            clkFlags : out std_logic;
             jump_en : out std_logic;
             imm_enable : out std_logic;
             writeEnable :  out std_logic;
@@ -97,12 +101,24 @@ architecture a_uProcessador of uProcessador is
         );
     end component;
 
+    component reg1bit is
+        port (
+            clk      : in std_logic;
+            rst      : in std_logic;
+            wr_en    : in std_logic;
+            data_in  : in std_logic;
+            data_out : out std_logic
+        );
+    end component;
+
+
+
     --SIGNAL CONTROL UNIT--
-    signal clk1_s, clk2_s, clk3_s :                                 std_logic := '0'; 
+    signal clk1_s, clk2_s, clk3_s, clkFlags_s :                     std_logic := '0'; 
     signal jump_en_s, imm_enable_s, writeEnable_s, acc_write_en_s : std_logic := '0'; 
     signal jump_adress_s :                                          unsigned (11 downto 0) := "000000000000"; 
     signal reg_write_s, reg_read_s :                                unsigned (2 downto 0) := "000";
-    signal selectorWriteData_s, ulaOP_s :                                                unsigned (1 downto 0) := "00";
+    signal selectorWriteData_s, ulaOP_s :                           unsigned (1 downto 0) := "00";
     signal imm_s :                                                  unsigned (5 downto 0) := "000000";
     signal selectorAcc_s, selectorInputA_s  :                       std_logic := '0'; 
     ---------------------------
@@ -129,7 +145,7 @@ architecture a_uProcessador of uProcessador is
 
     --SIGNAL--
     signal  ULAinput1_s, imm_final, writeDataFinal: unsigned (15 downto 0):= "0000000000000000";
-    signal carry_s, zero_s : std_logic := '0';
+    signal carry_s, zero_s, flagZero, flagCarry, cmp : std_logic := '0';
     ---------------------------
 
 
@@ -139,9 +155,13 @@ begin
         clk => clk,
         reset => reset,
         instruction => rom_out,
+        PC => pc_out,
+        flagCarry => flagCarry,
+        flagZero => flagZero,
         clk1 => clk1_s,
         clk2 => clk2_s,
         clk3 => clk3_s,
+        clkFlags => clkFlags_s,
         jump_en => jump_en_s,
         imm_enable => imm_enable_s,
         writeEnable => writeEnable_s,
@@ -206,6 +226,8 @@ begin
         carry => carry_s,
         zero => zero_s
     );
+
+    cmp <= carry_s;
     -- OBS: ULA possui uma gambiarra para carregar registradores no acumulador. Dessa forma, existe uma operação nothing que
     -- simplesmente passa o sinal do registrador sem nenhuma operação 
 
@@ -218,7 +240,23 @@ begin
         wr_en => acc_write_en_s,
         data_in => acc_in,
         data_out => acumuladorFinal
-    );                   
+    );         
+    
+    regFlagZero: reg1bit port map (
+        clk => clk3_s,
+        rst => reset,
+        wr_en => '1',
+        data_in => zero_s,
+        data_out => flagZero
+    );    
+    
+    regFlagCarry: reg1bit port map (
+        clk => clk3_s,
+        rst => reset,
+        wr_en => '1',
+        data_in => carry_s,
+        data_out => flagCarry
+    );   
 
 
     
