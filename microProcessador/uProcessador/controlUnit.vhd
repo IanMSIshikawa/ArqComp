@@ -18,6 +18,8 @@ entity controlUnit is
         jump_en : out std_logic;
         imm_enable : out std_logic;
         writeEnable :  out std_logic;
+        writeEnable_flags : out std_logic;
+        writeEnableRam: out std_logic;
         selectorWriteData : out unsigned (1 downto 0);
         acc_write_en : out std_logic;
         jump_adress : out unsigned (11 downto 0);
@@ -69,11 +71,14 @@ begin
                     jump_adress_cond when opcode = "1010" or opcode = "1011" else 
                     "000000000000";
 
-    writeEnable_s <=    '1' when opcode = "0011" or opcode = "0111"
+    writeEnable_s <=    '1' when opcode = "0011" or opcode = "0111" or opcode="1100"
                             else 
                         '0';
 
     writeEnable <= writeEnable_s;
+
+    writeEnableRam <=   '1' when opcode = "1101" else
+                        '0';
                         
     
     imm_enable_s <=     '1' when    opcode = "0010" or opcode = "0101" or opcode = "0011" else 
@@ -82,7 +87,7 @@ begin
     selectorAcc <=  '1' when opcode = "0011" else 
                     '0';
 
-    acc_write_en <= '0' when opcode = "0111" or opcode = "1001" or opcode = "1010" or opcode = "1011" else 
+    acc_write_en <= '0' when opcode = "0111" or opcode = "1001" or opcode = "1010" or opcode = "1011" or opcode = "1101" else 
                     '1';
                         
     imm_enable <= imm_enable_s;
@@ -93,6 +98,7 @@ begin
     imm_s <= instruction(5 downto 0);
 
     selectorWriteData <= "01" when opcode = "0011" else 
+                         "10" when opcode = "1100" else
                          "00";
 
     ulaOP <=    "00" when opcode = "0001" or opcode = "0010" else 
@@ -105,10 +111,9 @@ begin
 
     imm <=  instruction(5 downto 0);
 
-    clkFlags_s <=   '1' when opcode = "1001" or opcode = "1010" or opcode = "1011" else 
-                    '0';
-
-    clkFlags <= clkFlags_s and clk3_s;
+    writeEnable_flags <=   '1' when opcode = "0001" or opcode = "0010" or opcode = "0100"
+                                 or opcode = "0101" else 
+                           '0';
 
 
 

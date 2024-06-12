@@ -27,6 +27,7 @@ architecture a_uProcessador of uProcessador is
             jump_en : out std_logic;
             imm_enable : out std_logic;
             writeEnable :  out std_logic;
+            writeEnableRam : out std_logic;
             selectorWriteData : out unsigned (1 downto 0);
             acc_write_en : out std_logic;
             jump_adress : out unsigned (11 downto 0);
@@ -111,6 +112,15 @@ architecture a_uProcessador of uProcessador is
         );
     end component;
 
+    component ram is
+        port (
+            clk      : in std_logic;
+            endereco : in unsigned(6 downto 0);
+            wr_en    : in std_logic;
+            dado_in  : in unsigned(15 downto 0);
+            dado_out : out unsigned(15 downto 0)    
+        );
+    end component;
 
 
     --SIGNAL CONTROL UNIT--
@@ -143,6 +153,11 @@ architecture a_uProcessador of uProcessador is
     signal ULAout : unsigned (15 downto 0) := "0000000000000000";
     ---------------------------
 
+    -- SIGNAL RAM--
+    signal writeEnableRam_s : std_logic := '0';
+    signal ramOut: unsigned (15 downto 0) := "0000000000000000";
+    
+
     --SIGNAL--
     signal  ULAinput1_s, imm_final, writeDataFinal: unsigned (15 downto 0):= "0000000000000000";
     signal carry_s, zero_s, flagZero, flagCarry, cmp : std_logic := '0';
@@ -165,6 +180,7 @@ begin
         jump_en => jump_en_s,
         imm_enable => imm_enable_s,
         writeEnable => writeEnable_s,
+        writeEnableRam => writeEnableRam_s,
         acc_write_en =>acc_write_en_s,
         jump_adress => jump_adress_s,
         selectorWriteData => selectorWriteData_s,
@@ -192,6 +208,16 @@ begin
         endereco => pc_out (11 downto 0),
         dado => rom_out
     );
+    
+    ramComponent: ram port map (
+        clk => clk3_s,
+        endereco => reg1_s(6 downto 0),
+        wr_en    => writeEnableRam_s,
+        dado_in  => acumuladorFinal,
+        dado_out => ramOut
+    );
+    --ler REG_READ, passar valor para ENDERECO na ram
+    --
 
     br: bankReg port map (
         clk   => clk3_s,
@@ -209,7 +235,7 @@ begin
         selector => selectorWriteData_s,
         op0 => acumuladorFinal,
         op1 => imm_final,
-        op2 => "0000000000000000",
+        op2 => ramOut,
         result => writeDataFinal
     );
     
@@ -241,11 +267,12 @@ begin
         data_in => acc_in,
         data_out => acumuladorFinal
     );         
+        
     
     regFlagZero: reg1bit port map (
         clk => clk3_s,
         rst => reset,
-        wr_en => '1',
+        wr_en => '1',--wr enable somente em operações de ula 
         data_in => zero_s,
         data_out => flagZero
     );    

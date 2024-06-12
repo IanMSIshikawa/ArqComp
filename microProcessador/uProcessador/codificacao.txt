@@ -3,12 +3,14 @@ ADDI : 0010 xxx xxx cccccc
 LD   : 0011 ddd xxx cccccc
 SUB  : 0100 xxx sss xxxxxx
 SUBI : 0101 xxx xxx cccccc
-J    : 0110 ccccccccccc
+J    : 0110 ccc ccc cccccc
 MOVA : 0111 ddd xxx xxxxxx --move acumulador para um registrador 
 MOVR : 1000 xxx sss xxxxxx --move registrador para o acumulador
 CMP  : 1001 xxx sss xxxxxx
-JZ   : 1010 xxx sss xxxxxx
-JC   : 1011 xxx sss xxxxxx
+JZ   : 1010 ccc ccc cccccc
+JC   : 1011 ccc ccc cccccc
+LW   : 1100 ddd sss xxxxxx
+SW   : 1101 xxx sss xxxxxx
 
 onde: 
         d  -> registrador de destino 
