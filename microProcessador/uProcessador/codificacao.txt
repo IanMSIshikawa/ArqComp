@@ -9,8 +9,8 @@ MOVR : 1000 xxx sss xxxxxx --move registrador para o acumulador
 CMP  : 1001 xxx sss xxxxxx
 JZ   : 1010 ccc ccc cccccc
 JC   : 1011 ccc ccc cccccc
-LW   : 1100 ddd sss xxxxxx
-SW   : 1101 xxx sss xxxxxx
+LW   : 1100 ddd sss xxxxxx --carrega reg "ddd" com o endereço da ram armazenado no reg "sss"
+SW   : 1101 xxx sss xxxxxx --armazena valor do acumulador no endereço contido no reg "sss"
 
 onde: 
         d  -> registrador de destino 

@@ -1,0 +1,10 @@
+                ld r1, 1        ---sempre terá valor 1 para incrementar  
+                ld r2, 1        ---valor e endereço que sera guardado na ram
+                ld r3, 32       ---valor final, sera usado para verificar fim do loop
+                movr a, r2
+                sw r2
+                movr a, r1
+                add r2
+                mova r2, a
+                sub r3
+                jc -6(111111111010)
