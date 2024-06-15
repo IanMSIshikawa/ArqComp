@@ -1,3 +1,37 @@
+CRIVO SEM OTIMIZAÇÕES
+
+                
+                ld r1, 1            ---sempre terá valor 1 para incrementar  
+                ld r2, 2            ---valor e endereço que sera guardado na ram
+                ld r3, 32           ---valor final, sera usado para verificar fim do loop
+                ld r5, 6            --valor limite, raiz do numero limite arredondado para baixo
+        |       movr a, r2
+        |       sw r2
+        |       movr a, r1
+        |       add r2
+        |       mova r2, a
+        |       sub r3
+        |       jc -6
+                ld r2, 2            ---crivo
+|               movr a, r2
+|               add r2              
+|               mova r4, a
+|        |      movr a, r0                                             
+|        |      sw r4               
+|        |      movr a, r4
+|        |      add r2
+|        |      mova r4, a
+|        |      sub r3              
+|        |      jc -6               
+|               movr a, r2          
+|               add r1
+|               mova r2
+|               movr a, r5          
+|               sub r2
+|               jc -15            
+
+CRIVO COM OTIMIZAÇÕES
+
                 ld r1, 1            ---sempre terá valor 1 para incrementar  
                 ld r2, 2            ---valor e endereço que sera guardado na ram
                 ld r3, 32           ---valor final, sera usado para verificar fim do loop
@@ -25,7 +59,7 @@
 |               mova r2
 |               movr a, r5          
 |               sub r2
-|               jc -15              
+|               jc -15         
     
 
 
