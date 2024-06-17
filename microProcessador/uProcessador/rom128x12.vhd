@@ -43,8 +43,6 @@ architecture a_rom128x12 of rom128x12 is
      29  => B"1000_000_010_000000",--movr a, r2
      30  => B"0100_000_101_000000",--sub r5
      31  => B"1011_111_111_110001",--jc -15
-     
-
       -- abaixo: casos omissos => (zero em todos os bits)
       others => (others=>'0')
    );

@@ -13,7 +13,7 @@ entity ram is
 end entity;
 ------------------------------------------------------------------------
 architecture a_ram of ram is
-   type mem is array (0 to 1358) of unsigned(15 downto 0);
+   type mem is array (0 to 1500) of unsigned(15 downto 0);
    signal conteudo_ram : mem;
 begin
    process(clk,wr_en)

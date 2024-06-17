@@ -216,8 +216,7 @@ begin
         dado_in  => acumuladorFinal,
         dado_out => ramOut
     );
-    --ler REG_READ, passar valor para ENDERECO na ram
-    --
+    
 
     br: bankReg port map (
         clk   => clk3_s,
