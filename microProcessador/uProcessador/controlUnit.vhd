@@ -26,7 +26,7 @@ entity controlUnit is
         reg_write : out unsigned (2 downto 0);
         reg_read : out unsigned (2 downto 0);
         ulaOP: out unsigned (1 downto 0);
-        imm: out unsigned (5 downto 0);
+        imm: out unsigned (8 downto 0);
         selectorAcc : out std_logic;
         selectorInputA : out std_logic
 
@@ -47,7 +47,7 @@ architecture a_controlUnit of controlUnit is
     signal opcode : unsigned (3 downto 0) := "0000";
     signal reg_read_s, reg_dst2_s, reg_write_s : unsigned (2 downto 0) := "000";
     signal imm_enable_s, writeEnable_s, cmp, clk3_s, clkFlags_s, jump_en_zero, jump_en_carry : std_logic := '0';
-    signal imm_s : unsigned (5 downto 0) := "000000";
+    signal imm_s : unsigned (11 downto 0) := "000000000000";
     signal jump_adress_cond : unsigned (11 downto 0) := "000000000000";
     
     
@@ -95,7 +95,7 @@ begin
     selectorInputA <=   '1' when opcode = "0010" or opcode = "0101" else 
                         '0';
 
-    imm_s <= instruction(5 downto 0);
+    imm_s <= instruction(11 downto 0);
 
     selectorWriteData <= "01" when opcode = "0011" else 
                          "10" when opcode = "1100" else
@@ -109,7 +109,7 @@ begin
     reg_write <= instruction(11 downto 9);
     reg_read <= instruction(8 downto 6);
 
-    imm <=  instruction(5 downto 0);
+    imm <=  instruction(8 downto 0);
 
     writeEnable_flags <=   '1' when opcode = "0001" or opcode = "0010" or opcode = "0100"
                                  or opcode = "0101" else 

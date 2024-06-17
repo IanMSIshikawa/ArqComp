@@ -34,7 +34,7 @@ architecture a_uProcessador of uProcessador is
             reg_write : out unsigned (2 downto 0);
             reg_read : out unsigned (2 downto 0);
             ulaOP: out unsigned (1 downto 0);
-            imm: out unsigned (5 downto 0);
+            imm: out unsigned (8 downto 0);
             selectorAcc : out std_logic;
             selectorInputA : out std_logic
         );
@@ -129,7 +129,7 @@ architecture a_uProcessador of uProcessador is
     signal jump_adress_s :                                          unsigned (11 downto 0) := "000000000000"; 
     signal reg_write_s, reg_read_s :                                unsigned (2 downto 0) := "000";
     signal selectorWriteData_s, ulaOP_s :                           unsigned (1 downto 0) := "00";
-    signal imm_s :                                                  unsigned (5 downto 0) := "000000";
+    signal imm_s :                                                  unsigned (8 downto 0) := "000000000";
     signal selectorAcc_s, selectorInputA_s  :                       std_logic := '0'; 
     ---------------------------
 
@@ -239,7 +239,7 @@ begin
         result => writeDataFinal
     );
     
-    imm_final <= "0000000000" & imm_s;
+    imm_final <= "0000000" & imm_s;
 
     ULAinput1_s <=  reg1_s when selectorInputA_s = '0' else 
                     imm_final;
