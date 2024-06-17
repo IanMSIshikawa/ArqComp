@@ -115,7 +115,7 @@ architecture a_uProcessador of uProcessador is
     component ram is
         port (
             clk      : in std_logic;
-            endereco : in unsigned(6 downto 0);
+            endereco : in unsigned(15 downto 0);
             wr_en    : in std_logic;
             dado_in  : in unsigned(15 downto 0);
             dado_out : out unsigned(15 downto 0)    
@@ -211,7 +211,7 @@ begin
     
     ramComponent: ram port map (
         clk => clk3_s,
-        endereco => reg1_s(6 downto 0),
+        endereco => reg1_s,
         wr_en    => writeEnableRam_s,
         dado_in  => acumuladorFinal,
         dado_out => ramOut

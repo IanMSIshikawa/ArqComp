@@ -4,7 +4,13 @@ CRIVO SEM OTIMIZAÇÕES
                 ld r1, 1            ---sempre terá valor 1 para incrementar  
                 ld r2, 2            ---valor e endereço que sera guardado na ram
                 ld r5, 36            --valor limite, raiz do numero limite arredondado para baixo
-                ld r3, 32           ---valor final, sera usado para verificar fim do loop
+                ld r3, 511          ---valor final, sera usado para verificar fim do loop
+                movr a, r3
+                addi 511
+                mova r3, a
+                movr a, r3
+                addi 336
+                mova r3, a
         |       movr a, r2
         |       sw r2
         |       movr a, r1
