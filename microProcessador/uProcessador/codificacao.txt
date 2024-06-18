@@ -11,6 +11,7 @@ JZ   : 1010 ccc ccc cccccc
 JC   : 1011 ccc ccc cccccc
 LW   : 1100 ddd sss xxxxxx --carrega reg "ddd" com o endereço da ram armazenado no reg "sss"
 SW   : 1101 xxx sss xxxxxx --armazena valor do acumulador no endereço contido no reg "sss"
+SR   : 1110 xxx ccc cccccc --shift right no acumulador com uma constante
 
 onde: 
         d  -> registrador de destino 

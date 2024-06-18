@@ -19,6 +19,7 @@ signal sum17 : unsigned (16 downto 0):= "00000000000000000";
 signal sub17 : unsigned (16 downto 0):= "00000000000000000";
 signal inputA17 : unsigned (16 downto 0):= "00000000000000000";
 signal inputB17 : unsigned (16 downto 0):= "00000000000000000";
+signal result_s: unsigned (15 downto 0):="0000000000000000";
 signal overflowSumNeg, overflowSumPos, overflowSub : std_logic := '0';
 
 
@@ -44,22 +45,22 @@ begin
     overflow <= '1' when (overflowSumNeg or overflowSumPos or overflowSub) = '1' else
                 '0';
     
-    zero <= '1' when sum17 = "00000000000000000" or sub17 = "00000000000000000" else 
+    zero <= '1' when result_s = "0000000000000000" else 
             '0';
 
     -- selector code
     -- 00 -> sum
     -- 01 -> sub
-    -- 10 -> and
+    -- 10 -> shift right
     -- 11 -> nothing
 
-    result <=   inputA+inputB when selector = "00" else
+    result_s <= inputA+inputB when selector = "00" else
                 inputB-inputA when selector = "01" else
-                inputA and inputB when selector = "10" else
+                shift_right(inputB, to_integer(inputA)) when selector = "10" else
                 inputA when selector = "11" else
                 "0000000000000000";
     
-
+    result <= result_s;
 
 
     

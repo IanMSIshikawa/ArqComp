@@ -81,7 +81,7 @@ begin
                         '0';
                         
     
-    imm_enable_s <=     '1' when    opcode = "0010" or opcode = "0101" or opcode = "0011" else 
+    imm_enable_s <=     '1' when    opcode = "0010" or opcode = "0101" or opcode = "0011" or opcode = "1110" else 
                         '0';
 
     selectorAcc <=  '1' when opcode = "0011" else 
@@ -92,7 +92,7 @@ begin
                         
     imm_enable <= imm_enable_s;
 
-    selectorInputA <=   '1' when opcode = "0010" or opcode = "0101" else 
+    selectorInputA <=   '1' when opcode = "0010" or opcode = "0101" or opcode = "1110" else 
                         '0';
 
     imm_s <= instruction(11 downto 0);
@@ -103,6 +103,7 @@ begin
 
     ulaOP <=    "00" when opcode = "0001" or opcode = "0010" else 
                 "01" when opcode = "0100" or opcode = "0101" or opcode = "1001" else --ULA faz acumulador - registrador
+                "10" when opcode = "1110" else--operacao de shift right
                 "11" when opcode = "1000" else--GAMBIARRA: operacao nao faz nada, somente passa o operando a
                 "00";
 
