@@ -112,7 +112,7 @@ begin
 
     imm <=  instruction(8 downto 0);
 
-    writeEnable_flags <=   '1' when opcode = "0001" or opcode = "0010" or opcode = "0100"
+    writeEnable_flags <=   '1' when opcode = "0001" or opcode = "0010" or opcode = "0100" or opcode = "1001"
                                  or opcode = "0101" else 
                            '0';
 
