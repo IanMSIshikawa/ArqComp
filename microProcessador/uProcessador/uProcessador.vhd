@@ -28,6 +28,7 @@ architecture a_uProcessador of uProcessador is
             imm_enable : out std_logic;
             writeEnable :  out std_logic;
             writeEnableRam : out std_logic;
+            writeEnable_flags : out std_logic;
             selectorWriteData : out unsigned (1 downto 0);
             acc_write_en : out std_logic;
             jump_adress : out unsigned (11 downto 0);
@@ -125,7 +126,7 @@ architecture a_uProcessador of uProcessador is
 
     --SIGNAL CONTROL UNIT--
     signal clk1_s, clk2_s, clk3_s, clkFlags_s :                     std_logic := '0'; 
-    signal jump_en_s, imm_enable_s, writeEnable_s, acc_write_en_s : std_logic := '0'; 
+    signal jump_en_s, imm_enable_s, writeEnable_s, acc_write_en_s, writeEnable_flags_s : std_logic := '0'; 
     signal jump_adress_s :                                          unsigned (11 downto 0) := "000000000000"; 
     signal reg_write_s, reg_read_s :                                unsigned (2 downto 0) := "000";
     signal selectorWriteData_s, ulaOP_s :                           unsigned (1 downto 0) := "00";
@@ -181,6 +182,7 @@ begin
         imm_enable => imm_enable_s,
         writeEnable => writeEnable_s,
         writeEnableRam => writeEnableRam_s,
+        writeEnable_flags => writeEnable_flags_s,
         acc_write_en =>acc_write_en_s,
         jump_adress => jump_adress_s,
         selectorWriteData => selectorWriteData_s,
@@ -271,7 +273,7 @@ begin
     regFlagZero: reg1bit port map (
         clk => clk3_s,
         rst => reset,
-        wr_en => '1',--wr enable somente em operações de ula 
+        wr_en => writeEnable_flags_s,--wr enable somente em operações de ula 
         data_in => zero_s,
         data_out => flagZero
     );    
@@ -279,7 +281,7 @@ begin
     regFlagCarry: reg1bit port map (
         clk => clk3_s,
         rst => reset,
-        wr_en => '1',
+        wr_en => writeEnable_flags_s,
         data_in => carry_s,
         data_out => flagCarry
     );   
